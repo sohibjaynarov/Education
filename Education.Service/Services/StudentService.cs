@@ -47,7 +47,7 @@ namespace Education.Service.Services
             }
 
             // check for group
-            var existGroup = await unitOfWork.Groups.GetAsync(p => p.Id == studentDto.GroupId);
+            var existGroup = await unitOfWork.Courses.GetAsync(p => p.Id == studentDto.GroupId);
             if (existGroup is null)
             {
                 response.Error = new ErrorResponse(404, "Group not found");
@@ -149,7 +149,7 @@ namespace Education.Service.Services
             }
 
             // check for exist group
-            var group = await unitOfWork.Groups.GetAsync(p => p.Id == studentDto.GroupId);
+            var group = await unitOfWork.Courses.GetAsync(p => p.Id == studentDto.GroupId);
             if (group is null)
             {
                 response.Error = new ErrorResponse(404, "Group not found");

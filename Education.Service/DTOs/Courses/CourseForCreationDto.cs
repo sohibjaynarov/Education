@@ -18,5 +18,7 @@ namespace Education.Service.DTOs.Courses
         public Subject Subject { get; set; }
         [Required]
         public ushort Duration { get; set; }
+        [Required]
+        public Guid TeacherId { get; set; }
     }
 }

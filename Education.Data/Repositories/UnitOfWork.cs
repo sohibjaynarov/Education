@@ -18,7 +18,7 @@ namespace Education.Data.Repositories
         /// Repositories
         /// </summary>
         public IStudentRepository Students { get; private set; }
-        public IGroupRepository Groups { get; private set; }
+        public IGroupRepository Courses { get; private set; }
         public ITeacherRepository Teachers { get; private set; }
         public ICourseRepository Courses { get; private set; }
 
@@ -30,7 +30,7 @@ namespace Education.Data.Repositories
 
             // Object initializing for repositories
             Students = new StudentRepository(context);
-            Groups = new GroupRepository(context);
+            Courses = new GroupRepository(context);
             Teachers = new TeacherRepository(context);
             Courses = new CourseRepository(context);
         }

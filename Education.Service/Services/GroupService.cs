@@ -130,7 +130,7 @@ namespace Education.Service.Services
 
             // check for exist teacher
             var teacher = await unitOfWork.Teachers.GetAsync(p => p.Id == groupDto.TeacherId);
-            if (group is null)
+            if (teacher is null)
             {
                 response.Error = new ErrorResponse(404, "Teacher not found");
                 return response;
