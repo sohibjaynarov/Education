@@ -1,4 +1,5 @@
 ﻿using Education.Domain.Entities.Students;
+using Education.Domain.Entities.Teachers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

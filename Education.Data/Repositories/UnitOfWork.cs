@@ -18,8 +18,10 @@ namespace Education.Data.Repositories
         /// Repositories
         /// </summary>
         public IStudentRepository Students { get; private set; }
-
         public IGroupRepository Groups { get; private set; }
+        public ITeacherRepository Teachers { get; private set; }
+        public ICourseRepository Courses { get; private set; }
+
 
         public UnitOfWork(EducationDbContext context, IConfiguration config)
         {
@@ -29,6 +31,8 @@ namespace Education.Data.Repositories
             // Object initializing for repositories
             Students = new StudentRepository(context);
             Groups = new GroupRepository(context);
+            Teachers = new TeacherRepository(context);
+            Courses = new CourseRepository(context);
         }
 
         public void Dispose()

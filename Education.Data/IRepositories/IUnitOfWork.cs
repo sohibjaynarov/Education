@@ -10,6 +10,8 @@ namespace Education.Data.IRepositories
     {
         IStudentRepository Students { get; }
         IGroupRepository Groups { get; }
+        ITeacherRepository Teachers { get; }
+        ICourseRepository Courses { get; }
         Task SaveChangesAsync();
     }
 }

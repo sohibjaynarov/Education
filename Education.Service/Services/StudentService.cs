@@ -156,13 +156,11 @@ namespace Education.Service.Services
                 return response;
             }
 
-            student.FirstName = studentDto.FirstName;
-            student.LastName = studentDto.LastName;
-            student.Phone = studentDto.Phone;
-            student.GroupId = studentDto.GroupId;
-            student.Update();
+            var mappedStudent = mapper.Map<Student>(studentDto);
 
-            var result = await unitOfWork.Students.UpdateAsync(student);
+            mappedStudent.Update();
+
+            var result = await unitOfWork.Students.UpdateAsync(mappedStudent);
 
             await unitOfWork.SaveChangesAsync();
 
