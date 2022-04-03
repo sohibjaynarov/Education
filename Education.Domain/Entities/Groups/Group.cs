@@ -20,7 +20,6 @@ namespace Education.Domain.Entities.Groups
 
         [ForeignKey(nameof(TeacherId))]
         public Teacher Teacher { get; set; }
-        public Subject Subject { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

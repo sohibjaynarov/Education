@@ -16,9 +16,4 @@
     <ProjectReference Include="..\Education.Domain\Education.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Courses\" />
-    <Folder Include="DTOs\Groups\" />
-  </ItemGroup>
-
 </Project>
