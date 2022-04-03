@@ -19,7 +19,6 @@
   <ItemGroup>
     <Folder Include="DTOs\Courses\" />
     <Folder Include="DTOs\Groups\" />
-    <Folder Include="DTOs\Teachers\" />
   </ItemGroup>
 
 </Project>

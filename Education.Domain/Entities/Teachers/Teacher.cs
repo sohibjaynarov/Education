@@ -14,6 +14,7 @@ namespace Education.Domain.Entities.Teachers
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Phone { get; set; }
         public Subject Subject { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
