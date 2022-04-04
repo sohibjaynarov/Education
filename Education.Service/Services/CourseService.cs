@@ -62,7 +62,7 @@ namespace Education.Service.Services
 
             var result = await unitOfWork.Courses.CreateAsync(mappedCourse);
 
-            result.Video = "https://localhost:5001/Videos/" + result.Video;
+            result.Video = config.GetSection("FileUrl:VideoUrl").Value + result.Video;
 
 
             await unitOfWork.SaveChangesAsync();

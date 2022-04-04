@@ -54,7 +54,7 @@ namespace Education.Service.Services
 
             var result = await unitOfWork.Teachers.CreateAsync(mappedTeacher);
 
-            result.Image = "https://localhost:5001/Images/" + result.Image;
+            result.Image = config.GetSection("FileUrl:ImageUrl").Value + result.Image;
 
             await unitOfWork.SaveChangesAsync();
 
