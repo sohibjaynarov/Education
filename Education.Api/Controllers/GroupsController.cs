@@ -25,7 +25,7 @@ namespace Education.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<BaseResponse<Group>>> Create([FromForm] GroupForCreationDto groupDto)
+        public async Task<ActionResult<BaseResponse<Group>>> Create(GroupForCreationDto groupDto)
         {
             var result = await groupService.CreateAsync(groupDto);
 

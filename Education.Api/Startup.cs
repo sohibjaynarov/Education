@@ -1,7 +1,11 @@
+using Education.Api.Extensions;
+using Education.Data.Contexts;
+using Education.Service.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,12 +30,24 @@ namespace Education.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<EducationDbContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("Default"));
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Education.Api", Version = "v1" });
             });
+
+            services.AddHttpContextAccessor();
+
+            // Mapper services
+            services.AddAutoMapper(typeof(MappingProfile));
+
+            // custom services
+            services.AddCustomServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
