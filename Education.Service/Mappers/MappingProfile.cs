@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using Education.Domain.Entities.Courses;
+using Education.Domain.Entities.Groups;
 using Education.Domain.Entities.Students;
 using Education.Domain.Entities.Teachers;
+using Education.Service.DTOs.Courses;
+using Education.Service.DTOs.Groups;
 using Education.Service.DTOs.Students;
 using Education.Service.DTOs.Teachers;
 using System;
@@ -17,6 +21,8 @@ namespace Education.Service.Mappers
         {
             CreateMap<StudentForCreationDto, Student>().ReverseMap();
             CreateMap<TeacherForCreationDto, Teacher>().ReverseMap();
+            CreateMap<GroupForCreationDto, Group>().ReverseMap();
+            CreateMap<CourseForCreationDto, Course>().ReverseMap();
         }
     }
 }
