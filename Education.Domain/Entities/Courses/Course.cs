@@ -15,6 +15,7 @@ namespace Education.Domain.Entities.Courses
         public decimal Price { get; set; }
         public Subject Subject { get; set; }
         public ushort Duration { get; set; }
+        public string Video { get; set; }
         public Guid TeacherId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

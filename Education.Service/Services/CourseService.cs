@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -56,7 +57,13 @@ namespace Education.Service.Services
             // create after checking success
             var mappedCourse = mapper.Map<Course>(courseDto);
 
+            // save video from dto model to wwwroot
+            mappedCourse.Video = await SaveFileAsync(courseDto.Video.OpenReadStream(), courseDto.Video.FileName);
+
             var result = await unitOfWork.Courses.CreateAsync(mappedCourse);
+
+            result.Video = "https://localhost:5001/Videos/" + result.Video;
+
 
             await unitOfWork.SaveChangesAsync();
 
@@ -148,6 +155,18 @@ namespace Education.Service.Services
             response.Data = result;
 
             return response;
+        }
+
+        public async Task<string> SaveFileAsync(Stream file, string fileName)
+        {
+            fileName = Guid.NewGuid().ToString("N") + "_" + fileName;
+            string storagePath = config.GetSection("Storage:VideoUrl").Value;
+            string filePath = Path.Combine(env.WebRootPath, $"{storagePath}/{fileName}");
+            FileStream mainFile = File.Create(filePath);
+            await file.CopyToAsync(mainFile);
+            mainFile.Close();
+
+            return fileName;
         }
     }
 }

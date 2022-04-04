@@ -4,6 +4,7 @@ using Education.Domain.Entities.Courses;
 using Education.Service.DTOs.Courses;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -18,5 +19,7 @@ namespace Education.Service.Interfaces
         Task<BaseResponse<IEnumerable<Course>>> GetAllAsync(PaginationParams @params, Expression<Func<Course, bool>> expression = null);
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Course, bool>> expression);
         Task<BaseResponse<Course>> UpdateAsync(Guid id, CourseForCreationDto courseDto);
+
+        Task<string> SaveFileAsync(Stream file, string fileName);
     }
 }

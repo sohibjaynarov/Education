@@ -1,4 +1,5 @@
 ﻿using Education.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,5 +21,7 @@ namespace Education.Service.DTOs.Courses
         public ushort Duration { get; set; }
         [Required]
         public Guid TeacherId { get; set; }
+        [Required]
+        public IFormFile Video { get; set; }
     }
 }
