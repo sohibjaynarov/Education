@@ -29,7 +29,7 @@ namespace Education.Api.Controllers
         {
             var result = await groupService.CreateAsync(groupDto);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpGet]
@@ -37,7 +37,7 @@ namespace Education.Api.Controllers
         {
             var result = await groupService.GetAllAsync(@params);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpGet("{id}")]
@@ -45,7 +45,7 @@ namespace Education.Api.Controllers
         {
             var result = await groupService.GetAsync(p => p.Id == id);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpPut("{id}")]
@@ -53,7 +53,7 @@ namespace Education.Api.Controllers
         {
             var result = await groupService.UpdateAsync(id, groupDto);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpDelete("{id}")]
@@ -61,7 +61,7 @@ namespace Education.Api.Controllers
         {
             var result = await groupService.DeleteAsync(p => p.Id == id && p.State != ItemState.Deleted);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
     }
 }

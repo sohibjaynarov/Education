@@ -30,7 +30,7 @@ namespace Education.Api.Controllers
         {
             var result = await studentService.CreateAsync(studentDto);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpGet]
@@ -38,7 +38,7 @@ namespace Education.Api.Controllers
         {
             var result = await studentService.GetAllAsync(@params);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpGet("{id}")]
@@ -46,7 +46,7 @@ namespace Education.Api.Controllers
         {
             var result = await studentService.GetAsync(p => p.Id == id);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpPut("{id}")]
@@ -54,7 +54,7 @@ namespace Education.Api.Controllers
         {
             var result = await studentService.UpdateAsync(id, studentDto);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
 
         [HttpDelete("{id}")]
@@ -62,7 +62,7 @@ namespace Education.Api.Controllers
         {
             var result = await studentService.DeleteAsync(p => p.Id == id && p.State != ItemState.Deleted);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code, result);
         }
     }
 }

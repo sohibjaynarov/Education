@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Education.Service.Attributes;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,8 @@ namespace Education.Service.DTOs.Teachers
         [Required]
         public string Phone { get; set; }
 
+        [MaxFileSize(500)]
+        [AllowedExtensions(new string[] { ".jpg", ".png" })]
         public IFormFile Image { get; set; }
     }
 }

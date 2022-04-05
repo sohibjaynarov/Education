@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Education.Service.Attributes;
 using Microsoft.AspNetCore.Http;
 
 namespace Education.Service.DTOs.Students
@@ -21,7 +22,8 @@ namespace Education.Service.DTOs.Students
 
         [Required]
         public Guid GroupId { get; set; }
-
+        [MaxFileSize(500)]
+        [AllowedExtensions(new string[] { ".jpg", ".png" })]
         public IFormFile Image { get; set; }
     }
 }

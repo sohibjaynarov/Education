@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Education.Service.Attributes;
 
 namespace Education.Service.DTOs.Courses
 {
@@ -22,6 +23,8 @@ namespace Education.Service.DTOs.Courses
         [Required]
         public Guid TeacherId { get; set; }
         [Required]
+        [MaxFileSize(500)]
+        [AllowedExtensions(new string[] { ".mp4", ".3gp" })]
         public IFormFile Video { get; set; }
     }
 }
