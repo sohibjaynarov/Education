@@ -137,11 +137,12 @@ namespace Education.Service.Services
             }
 
 
-            var mappedGroup = mapper.Map<Group>(groupDto);
+            group.Name = groupDto.Name;
+            group.TeacherId = groupDto.TeacherId;
 
-            mappedGroup.Update();
+            group.Update();
 
-            var result = await unitOfWork.Groups.UpdateAsync(mappedGroup);
+            var result = await unitOfWork.Groups.UpdateAsync(group);
 
             await unitOfWork.SaveChangesAsync();
 
