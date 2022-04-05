@@ -156,11 +156,17 @@ namespace Education.Service.Services
                 return response;
             }
 
-            var mappedStudent = mapper.Map<Student>(studentDto);
+            student.FirstName = studentDto.FirstName;
+            student.LastName = studentDto.LastName;
+            student.GroupId = studentDto.GroupId;
+            student.Phone = studentDto.Phone;
 
-            mappedStudent.Update();
+            // save image from dto model to wwwroot
+            student.Image = await SaveFileAsync(studentDto.Image.OpenReadStream(), studentDto.Image.FileName);
 
-            var result = await unitOfWork.Students.UpdateAsync(mappedStudent);
+            student.Update();
+
+            var result = await unitOfWork.Students.UpdateAsync(student);
 
             await unitOfWork.SaveChangesAsync();
 

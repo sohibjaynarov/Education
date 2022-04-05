@@ -49,7 +49,7 @@ namespace Education.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<BaseResponse<Course>>> Update(Guid id, CourseForCreationDto courseDto)
+        public async Task<ActionResult<BaseResponse<Course>>> Update(Guid id, [FromForm] CourseForCreationDto courseDto)
         {
             var result = await courseService.UpdateAsync(id, courseDto);
 

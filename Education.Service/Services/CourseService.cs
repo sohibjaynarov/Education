@@ -143,12 +143,19 @@ namespace Education.Service.Services
                 return response;
             }
 
+            course.Name = courseDto.Name;
+            course.Subject = courseDto.Subject;
+            course.Price = courseDto.Price;
+            course.Duration = courseDto.Duration;
 
-            var mappedCourse = mapper.Map<Course>(courseDto);
+            // save image from dto model to wwwroot
+            course.Video = await SaveFileAsync(courseDto.Video.OpenReadStream(), courseDto.Video.FileName);
 
-            mappedCourse.Update();
+            course.Update();
 
-            var result = await unitOfWork.Courses.UpdateAsync(mappedCourse);
+            var result = await unitOfWork.Courses.UpdateAsync(course);
+
+            result.Video = config.GetSection("FileUrl:VideoUrl").Value + result.Video;
 
             await unitOfWork.SaveChangesAsync();
 

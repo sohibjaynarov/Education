@@ -49,7 +49,7 @@ namespace Education.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<BaseResponse<Teacher>>> Update(Guid id, TeacherForCreationDto teacherDto)
+        public async Task<ActionResult<BaseResponse<Teacher>>> Update(Guid id, [FromForm] TeacherForCreationDto teacherDto)
         {
             var result = await teacherService.UpdateAsync(id, teacherDto);
 

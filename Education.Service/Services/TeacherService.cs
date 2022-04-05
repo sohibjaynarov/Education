@@ -131,7 +131,7 @@ namespace Education.Service.Services
         {
             var response = new BaseResponse<Teacher>();
 
-            // check for exist student
+            // check for exist teacher
             var teacher = await unitOfWork.Teachers.GetAsync(p => p.Id == id && p.State != ItemState.Deleted);
             if (teacher is null)
             {
@@ -139,11 +139,18 @@ namespace Education.Service.Services
                 return response;
             }
 
-            var mappedTeacher = mapper.Map<Teacher>(teacherDto);
+            teacher.FirstName = teacherDto.FirstName;
+            teacher.LastName = teacherDto.LastName;
+            teacher.Phone = teacherDto.Phone;
 
-            mappedTeacher.Update();
+            // save image from dto model to wwwroot
+            teacher.Image = await SaveFileAsync(teacherDto.Image.OpenReadStream(), teacherDto.Image.FileName);
 
-            var result = await unitOfWork.Teachers.UpdateAsync(mappedTeacher);
+            teacher.Update();
+
+            var result = await unitOfWork.Teachers.UpdateAsync(teacher);
+            
+            result.Image = config.GetSection("FileUrl:ImageUrl").Value + result.Image;
 
             await unitOfWork.SaveChangesAsync();
 
