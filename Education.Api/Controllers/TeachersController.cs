@@ -13,7 +13,7 @@ using Education.Domain.Entities.Teachers;
 namespace Education.Api.Controllers
 {
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/teachers")]
     public class TeachersController : ControllerBase
     {
         private readonly ITeacherService teacherService;

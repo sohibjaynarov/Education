@@ -13,7 +13,7 @@ using Education.Domain.Enums;
 namespace Education.Api.Controllers
 {
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/courses")]
     public class CoursesController : ControllerBase
     {
         private readonly ICourseService courseService;

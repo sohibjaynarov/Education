@@ -13,7 +13,7 @@ using Education.Service.DTOs.Groups;
 namespace Education.Api.Controllers
 {
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/groups")]
     public class GroupsController : ControllerBase
     {
         private readonly IGroupService groupService;
