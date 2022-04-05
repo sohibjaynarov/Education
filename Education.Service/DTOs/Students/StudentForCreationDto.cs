@@ -18,6 +18,7 @@ namespace Education.Service.DTOs.Students
         public string LastName { get; set; }
 
         [Required]
+        [RegularExpression(@"^998[389][012345789][0-9]{7}$", ErrorMessage = "Phone number is not valid")]
         public string Phone { get; set; }
 
         [Required]
